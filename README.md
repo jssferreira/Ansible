@@ -1,5 +1,22 @@
 # Ansible
 
+Neste repositório estão disponíveis os códigos para alteração de IP e instalação do agente do Zabbix em um servidor Linux.
+
+<strong>Alteração de IP</strong>
+O arquivo para alteração do IP está no diretório <em>/Linux/roles/changes/CHANGE_IP.yml</em>
+Neste código, irá executar:
+  - A alteração do nome do arquivo para .old
+  - Em seguida, será criado um novo arquivo de configuração
+  - E, por fim, o mesmo será populado com as informações da interface de rede
+
+<strong>Instalação Zabbix Agent</strong>
+O script para instalação está no diretório <em>/Linux/roles/zabbix/ZABBIX.yml</em>
+Neste código, será feito:
+  - O download do instalador do agente
+  - Após isso, será feito a atualização dos pacotes do Linux e a instalação do agente.
+  - Ao final do processo, o arquivo .conf será previamente configurado de acordo com as informações do servidor do zabbix.
+  
+
 <strong>FONTES UTILIZADAS</strong>
 
 - ENTENDER A ESTRUTURA DO ANSIBLE<br/>
