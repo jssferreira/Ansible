@@ -24,8 +24,3 @@
              - 'address 10.0.2.30'
              - 'netmask 255.0.0.0'
              - 'gateway 10.0.2.1'
-
-      - name: REMOVE OLD FILE
-        shell: rm -r interfaces.old # REMOVE FILE AFTER IP CHANGE
-        args:
-                chdir: "/etc/network/"
