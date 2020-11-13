@@ -1,0 +1,25 @@
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+      - name: DOWNLOAD ZABBIX AGENT
+        shell: sudo wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+$(lsb_release -sc)_all.deb
+        args:
+               chdir: "/tmp/"
+
+      - shell: sudo dpkg -i zabbix-release_5.0-1+bionic_all.deb
+        args:
+               chdir: "/tmp/"
+
+      - name: INSTALLING ZABBIX AGENT
+        shell: sudo apt update && sudo apt -y install zabbix-agent
+
+      - name: CONFIGURING ZABBIX AGENT FILE
+        lineinfile:
+                path: "/etc/zabbix/zabbix_agentd.conf"
+                state: present
+                regexp: '{{item.From}}'
+                line: '{{item.To}}'
+        with_items:
+                - { From: '^Server=', To: 'Server=10.0.2.2' }
+                - { From: '^ServerActive=', To: 'ServerActive=10.0.2.2' }
+                - { From: '^Hostname=', To: 'Server=Ansible ubuntu' }
